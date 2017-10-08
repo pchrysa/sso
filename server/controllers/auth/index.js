@@ -2,6 +2,7 @@
 const fs = require('fs');
 const Mustache  = require('mustache');
 const Guid = require('guid');
+const moment = require('moment');
 
 const {clientId, webkit} = require('./../../../config').auth.facebook;
 const {exchangeToken, userProfile, findAccountKitUser, registerAccountKitUser} = require('./../../actions');
@@ -37,7 +38,7 @@ const loginOrSignup = async (ctx) => {
   });
   const view = {
     user_access_token: exchangeTokenResponse.access_token,
-    expires_at: exchangeTokenResponse.expires_at,
+    expires_at: exchangeTokenResponse.expires_at || moment().add(1, 'hours'),
     user_id: exchangeTokenResponse.id,
     refresh_interval: exchangeTokenResponse.token_refresh_interval_sec,
   };

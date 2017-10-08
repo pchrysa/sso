@@ -13,5 +13,10 @@
         <div>UserId {{user_id}}</div>
         <div>User Mobile: {{mobile}}</div>
         <div>User Email: {{email}}</div>
+
+        <script>
+          document.cookie = "token={{user_access_token}}; expires={{expires_at}}; path=/; domain=localhost";
+        </script>
     </body>
+
 </html>
