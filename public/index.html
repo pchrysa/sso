@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div class="container">
+    <form id="authForm" action="/exchange" method="POST">
+        <div>
+            <label for="countryCode">Enter country code (e.g. +1):</label>
+            <input type="text" id="countryCode"value="+30" />
+        </div>
+
+        <div>
+            <label for="mobile">Enter mobile (e.g. 6949999999):</label>
+            <input type="text" id="mobile"/><br/>
+            <button type="button" onclick="mobileOnClick();">Send me SMS</button>
+        </div>
+
+        <p>OR</p>
+
+        <div>
+            <label for="email">Enter email address</label>
+            <input type="text" id="email" />
+            <button type="button" onclick="emailOnClick();">Send me Email</button>
+        </div>
+        <input type="hidden" id="code" name="code" value="" />
+        <input type="hidden" id="csrfNonce" name="csrfNonce" />
+    </form>
+</div>
+<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+<script>
+  // initialize Account Kit with CSRF protection
+  AccountKit_OnInteractive = function(){
+    AccountKit.init(
+      {
+        appId: {{appId}},
+        state:"{{csrf}}",
+        version:"{{version}}"
+      });
+  };
+
+  function loginCallback(response) {
+    console.log(response);
+    if (response.status === "PARTIALLY_AUTHENTICATED") {
+      document.getElementById("code").value = response.code;
+      document.getElementById("csrfNonce").value = response.state;
+      document.getElementById("authForm").submit();
+    }
+    else if (response.status === "NOT_AUTHENTICATED") {
+      console.log('NOT AUTHENTICATED!')
+    }
+    else if (response.status === "BAD_PARAMS") {
+      console.log('BAD_PARAMS!')
+    }
+  }
+
+  // phone form submission handler
+  function mobileOnClick() {
+    let countryCode = document.getElementById("countryCode").value;
+    let mobile = document.getElementById("mobile").value;
+    AccountKit.login('PHONE', {countryCode: countryCode, phoneNumber: mobile}, loginCallback);
+  }
+
+
+  // email form submission handler
+  function emailOnClick() {
+    let email = document.getElementById("email").value;
+    AccountKit.login('EMAIL', {emailAddress: email}, loginCallback);
+  }
+
+</script>
+</body>
+</html>

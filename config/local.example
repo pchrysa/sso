@@ -1,0 +1,20 @@
+module.exports = {
+  auth: {
+    facebook: {
+      clientId: 'YOUR_APP_CLIENT_ID',
+      webkit: {
+        secret: 'YOUR_WEBKIT_SECRET',
+        version: 'v1.0',
+        urls: {
+          tokenExchange: 'https://graph.accountkit.com/v1.0/access_token',
+          me: 'https://graph.accountkit.com/v1.0/me',
+        },
+      },
+    },
+  },
+  db: {
+    mongo: {
+      url: 'mongodb://localhost:27017/aaauth',
+    },
+  },
+};

@@ -1,0 +1,46 @@
+{
+    "env": {
+        "es6": true,
+        "node": true,
+        "browser": true
+    },
+    "plugins": ["node"],
+    "extends": ["eslint:recommended", "plugin:node/recommended"],
+    "parserOptions": {
+        "ecmaVersion": 8,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "modules": true,
+            "destructuring": true,
+            "spread": true,
+            "arrowFunctions": true,
+            "blockBindings": true,
+            "experimentalObjectRestSpread": true,
+            "defaultParams": true,
+            "binaryLiterals": true,
+            "classes": true,
+            "restParams": true,
+            "forOf": true,
+            "generators": true
+        }
+    },
+    "rules": {
+        "node/exports-style": ["error", "module.exports"],
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ]
+    }
+}
