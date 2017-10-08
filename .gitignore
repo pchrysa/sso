@@ -4,3 +4,4 @@ node_modules/*
 npm-debug.log
 config/local.js
 config/prod.js
+package-lock.json
