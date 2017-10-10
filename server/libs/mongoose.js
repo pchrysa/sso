@@ -1,7 +1,7 @@
 'use strict';
 /*eslint no-console: ["warn", { allow: ["warn", "error"] }] */
-const mongoose = require('mongoose');
-const Config = require('./../../config');
+import mongoose from 'mongoose';
+import Config from 'config';
 
 mongoose.Promise = global.Promise;
 mongoose.set('debug', true);

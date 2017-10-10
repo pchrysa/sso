@@ -1,5 +1,5 @@
 'use strict';
-const {loadLoginForm, loginOrSignup} = require('./../controllers');
+import {loadLoginForm, loginOrSignup} from 'controllers';
 
 const init = (router) => {
   router.get('/', loadLoginForm);

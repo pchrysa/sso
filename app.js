@@ -45,7 +45,7 @@ try {
         name: err.name,
         code: ctx.status,
         message: err.message || ctx.res.statusMessage,
-        errors: Array.isArray(err.errors) ? err.errors : []
+        errors: Array.isArray(err.errors) ? err.errors : [],
       };
       ctx.app.emit('error', err, this);
     }
@@ -54,7 +54,9 @@ try {
   app.use(async (ctx, next) => {
     ctx.set('Access-Control-Allow-Origin', '*');
     ctx.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    ctx.set('Access-Control-Allow-Headers', 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Pragma,Origin,Authorization');
+    ctx.set('Access-Control-Allow-Headers', 'DNT,X-CustomHeader,Keep-Alive,User-Agent,' +
+      'X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Pragma,Origin,' +
+      'Authorization');
     ctx.set('Access-Control-Max-Age', 1728000);
     await next();
   });

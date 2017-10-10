@@ -1,8 +1,8 @@
 'use strict';
-const {
+import {
   loadLoginForm,
   loginOrSignup,
-} = require('./auth');
+} from './auth';
 
 module.exports = {
   loadLoginForm,

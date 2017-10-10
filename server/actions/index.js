@@ -1,13 +1,13 @@
 'use strict';
-const {
+import {
   exchangeToken,
   userProfile,
-} = require('./facebook-webkit');
+} from './facebook-webkit';
 
-const {
+import {
   findAccountKitUser,
   registerAccountKitUser,
-} = require('./user');
+} from './user';
 
 module.exports = {
   exchangeToken,

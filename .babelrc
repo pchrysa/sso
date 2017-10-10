@@ -1,0 +1,25 @@
+{
+  "presets": ["es2015", "stage-0"],
+  "compact": false,
+  "plugins": [
+    "transform-runtime",
+    [
+      "transform-async-to-module-method", {
+        "module": "bluebird",
+        "method": "coroutine"
+      },
+    ],
+    [
+      "module-alias", [
+        { "src": "./server", "expose": "server" },
+        { "src": "./config", "expose": "config" },
+        { "src": "./public", "expose": "public" },
+        { "src": "./server/actions", "expose": "actions" },
+        { "src": "./server/controllers", "expose": "controllers" },
+        { "src": "./server/libs", "expose": "libs" },
+        { "src": "./server/models", "expose": "models" },
+        { "src": "./server/routes", "expose": "routes" },
+      ]
+    ]
+  ]
+}

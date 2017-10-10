@@ -1,9 +1,8 @@
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-
-const defaults = require('./global');
+import fs from 'fs';
+import path from 'path';
+import * as defaults from './global';
 let envConfigs = null;
 
 /* Load Local Config By Default */

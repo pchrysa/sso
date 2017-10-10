@@ -1,7 +1,7 @@
 'use strict';
-const moment = require('moment');
-const grvtr = require('grvtr');
-const User = require('./../models/user');
+import moment from 'moment';
+import grvtr from 'grvtr';
+import User from 'models/user';
 
 const findAccountKitUser = async ({email, mobile}) => {
   try {
@@ -25,7 +25,7 @@ const registerAccountKitUser = async ({email, mobile, user_id}) => {
       photo: grvtr.create(email || mobile, {
         size: 200,
         defaultImage: 'identicon',
-        secure: true
+        secure: true,
       }),
     });
     await newUser.save();

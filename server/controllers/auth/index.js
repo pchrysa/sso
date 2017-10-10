@@ -1,17 +1,19 @@
 'use strict';
-const fs = require('fs');
-const Mustache  = require('mustache');
-const Guid = require('guid');
-const moment = require('moment');
+import fs from 'fs';
+import Mustache from 'mustache';
+import Guid from 'guid';
+import moment from 'moment';
+import Config from 'config';
+import {exchangeToken, userProfile, findAccountKitUser, registerAccountKitUser} from 'actions';
 
-const {clientId, webkit} = require('./../../../config').auth.facebook;
-const {exchangeToken, userProfile, findAccountKitUser, registerAccountKitUser} = require('./../../actions');
-
+const {clientId, webkit} = Config.auth.facebook;
 const csrfGuid = Guid.raw();
 
-const loadLogin = () => fs.readFileSync(__dirname + '/../../../public/index.html').toString();
+const loadLogin = () =>
+  fs.readFileSync(Config.root_path + '/public/index.html').toString();
 
-const loadLoginSuccess = () => fs.readFileSync(__dirname + '/../../../public/loginSuccess.html').toString();
+const loadLoginSuccess = () =>
+  fs.readFileSync(Config.root_path + '/public/loginSuccess.html').toString();
 
 const loadLoginForm = async (ctx) => {
   const view = {
@@ -25,7 +27,7 @@ const loadLoginForm = async (ctx) => {
 
 const loginOrSignup = async (ctx) => {
   const reqBody = ctx.request.body;
-  const {csrfNonce, code, } = reqBody;
+  const {csrfNonce, code} = reqBody;
   
   if (csrfNonce !== csrfGuid) {
     ctx.throw(401, 'Unauthorized');
@@ -34,7 +36,7 @@ const loginOrSignup = async (ctx) => {
   
   const exchangeTokenResponse = await exchangeToken({code});
   const userProfileResponse = await userProfile({
-    access_token: exchangeTokenResponse.access_token
+    access_token: exchangeTokenResponse.access_token,
   });
   const view = {
     user_access_token: exchangeTokenResponse.access_token,

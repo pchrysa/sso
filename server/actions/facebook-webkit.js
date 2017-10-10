@@ -1,8 +1,10 @@
 'use strict';
-const Request  = require('request');
-const crypto = require('crypto');
-const Querystring  = require('querystring');
-const {clientId, webkit} = require('./../../config').auth.facebook;
+import Request from 'request';
+import crypto from 'crypto';
+import Querystring  from 'querystring';
+import {auth} from 'config';
+
+const {clientId, webkit} = auth.facebook;
 
 const exchangeToken = async ({code}) => {
   const access_token = `AA|${clientId}|${webkit.secret}`;
@@ -17,7 +19,7 @@ const exchangeToken = async ({code}) => {
     return new Promise((resolve, reject) => {
       Request.get({
         url,
-        json: true
+        json: true,
       }, (err, resp, respBody) => {
         if (err) {
           reject(err);
@@ -40,7 +42,7 @@ const userProfile = async ({access_token}) => {
     return new Promise((resolve, reject) => {
       Request.get({
         url,
-        json: true
+        json: true,
       }, (err, resp, respBody) => {
         if (err) {
           reject(err);

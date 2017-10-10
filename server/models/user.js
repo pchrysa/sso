@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bcrypt   = require('bcrypt-nodejs');
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt-nodejs';
 
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
@@ -11,13 +11,13 @@ const userSchema = new Schema({
     id: String,
     token: String,
     email: String,
-    name: String
+    name: String,
   },
   google: {
     id: String,
     token: String,
     email: String,
-    name: String
+    name: String,
   },
   accountKit: {
     id: String,
@@ -28,9 +28,13 @@ const userSchema = new Schema({
   photo: String,
 });
 
-userSchema.methods.generateHash = function (password) {return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);};
+userSchema.methods.generateHash = function (password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
 
-userSchema.methods.validPassword = function (password) {return bcrypt.compareSync(password, this.local.password);};
+userSchema.methods.validPassword = function (password) {
+  return bcrypt.compareSync(password, this.local.password);
+};
 
 const model = mongoose.model('User', userSchema);
 module.exports = model;
