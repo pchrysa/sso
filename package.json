@@ -13,6 +13,14 @@
   },
   "author": "Chrysa Papadopoulou",
   "license": "MIT",
+  "keywords": [
+    "nodejs",
+    "koa",
+    "facebook",
+    "account webkit",
+    "single sign on",
+    "sso"
+  ],
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "boom": "^6.0.0",
